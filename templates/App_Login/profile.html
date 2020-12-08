@@ -1,0 +1,37 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} {{title}} {% endblock %}
+{% block css_block %}
+
+<h2 class="text-center">Welcome to E-Learners</h2>
+<div class="row pt-5">
+    <div class="col-sm-4">
+        <img src="/static/default.png" width="250px" height="250px" class="rounded-circle" alt="default">
+    </div>
+    <div class="col-sm-8">
+        <br>
+        {% if instructor %}
+        <h3 class="text-center">Instructor Profile</h3>
+        <p>
+            <p>Username: </p>@{{user.username}} <br>
+            <p>Name: </p>{{user.instructor_profile.first_name}} {{user.instructor_profile.last_name}} <br>
+            <p>Email address: </p>{{user.instructor_profile.email}} <br>
+            <p>Subject: </p>{{user.instructor_profile.subject}} <br>
+            <p class="text-muted">{{user.instructor_profile.job_position}}</p><br>
+            <a href="{% url 'App_Login:edit_instructor' %}" class="btn btn-info btn-sm">Edit profile</a>&nbsp;
+            <a href="{% url 'App_courses:publish' %}" class="btn btn-secondary btn-sm">Publish a course</a>
+        </p>
+        {% else %}
+        <p>
+            <p>Username: </p>@{{user.username}} <br>
+            <p>Name: </p>{{user.learner_profile.first_name}} {{user.learner_profile.last_name}} <br>
+            <p>Email address: </p>{{user.learner_profile.email}} <br>
+            <p class="text-muted">{{user.learner_profile.institution}}</p><br>
+            <a href="{% url 'App_Login:edit_learner' %}" class="btn btn-info btn-sm">Edit profile</a>
+        </p>
+        {% endif %}
+    </div>
+</div><hr>
+
+
+{% endblock %}

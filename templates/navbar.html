@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title_block %} E-Learners {% endblock %}</title>
+    {% block css_block %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'App_Courses:home' %}">E-Learners</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        @{{user.username}}
+                    </a>
+                    <div class="dropdown-menu">
+                        {% if user.instructor_profile %}
+                        <a class="dropdown-item" href="{% url 'App_Courses:my_courses' %}">My Courses</a>
+                        <a class="dropdown-item" href="{% url 'App_Login:instructor_profile' %}">Your Profile</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'App_Login:learner_profile' %}">Your Profile</a>
+                        {% endif %}
+                        <hr>
+                        <a class="dropdown-item" href="{% url 'App_Login:logout' %}">Logout</a>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style='padding-top:80px'>
+        {% block body_block %} {% endblock %}
+      </div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+{% block title_block %} Your courses {% endblock %}
+{% block body_block %}
+
+<h2 class="text-center">Your courses</h2>
+{% for course in user.instructor_profile.course_instructor.all %}
+<div class="row pt-3">
+    <div class="col">
+        <img src="/static/default.png" alt="" width="30px" height="30px" class="rounded-circle">
+        <h4><a href="{% url 'App_Courses:course_description' slug=course.slug %}">{{course.course_title}}</a></h4>
+        <small class="text-muted">Instructor: @{{course.instructor}}</small>&nbsp;
+        <small class="text-muted">Published on: {{course.publish_date}}</small>
+    </div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

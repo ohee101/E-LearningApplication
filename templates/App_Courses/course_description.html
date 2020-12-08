@@ -1,0 +1,18 @@
+{% extends 'navbar.html' %}
+{%block title_block %} {{title}} {%endblock%}
+
+{% block body_block %}
+
+<h2 class="text-center">Welcome to E-Learners</h2>
+{% for course in course_list %}
+<div class="row pt-3">
+    <div class="col">
+        <img src="/static/default.png" alt="" width="30px" height="30px" class="rounded-circle">
+        <h5><a href="{% url 'App_Courses:course_description' slug=course.slug %}">{{course.course_title}}</a></h5>
+        <small class="text-muted">Instructor: @{{course.instructor}}</small>&nbsp;
+        <small class="text-muted">Published on: {{course.publish_date}}</small>
+    </div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}
